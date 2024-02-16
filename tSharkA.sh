@@ -15,3 +15,14 @@ mkdir -p "$CAPTURE_DIR"
 
 # Start capturing packets
 sudo tshark -i wlan1mon -w "$CAPTURE_FILE" -F pcap
+#Step 2: Make the Script Executable
+
+#chmod +x /path/to/your/script.sh
+#Step 3: Setup Cronjob for Reboot Execution
+#Edit the crontab file for your user with crontab -e and add the following line to execute the script at every reboot:
+#@reboot /path/to/your/script.sh
+#Important Notes:
+#Running as root: The script requires sudo for airmon-ng and tshark. Running it as a cron job under the root user might be necessary.
+#Security Concerns: Automatically executing this script at reboot with root privileges poses security risks. Ensure you understand the implications and secure your script accordingly.
+#Interface Naming: After enabling monitor mode, the interface name might change (e.g., wlan1 to wlan1mon). You may need to adjust the script accordingly.
+#Dependency on GUI: If you specifically need Wireshark's GUI, automating it to start at reboot with a specific task is more complex and may require a desktop environment to be loaded. Consider using tshark for headless setups.
